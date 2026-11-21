@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- React component files use PascalCase (`SiteHeader.tsx`); hooks/utils keep camelCase (`useSession.ts`). Why: one predictable naming scheme as the app grows.
+- Signed-in pages live under `src/routes/_authenticated/` (client-only gate, redirects to `/signin`). Why: session lives in browser storage, so SSR can't check it.
+- Session state comes from the single `onAuthStateChange` listener in `__root.tsx`, exposed via `useSession()`. Why: avoids competing auth listeners.
